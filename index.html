@@ -3,366 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PPSU Campus Visit Registration</title>
-    
-    <meta property="og:title" content="PPSU Campus Visit Registration">
-    <meta property="og:description" content="Official registration portal for Consultants and Associates planning a campus visit to P P Savani University.">
-    <meta property="og:image" content="https://i.ibb.co/TB0LTCFR/Group-11-DSC-9011-2-3-DSC-9032-3-4-7-images-equi-patch-2.jpg">
-    
-    <link rel="icon" type="image/png" href="https://i.ibb.co/FkSVFvHy/PPSUNAACA-Logo.png">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <title>Scrolling Layout</title>
     <style>
-        :root {
-            /* PRIMARY IS RED */
-            --brand-primary: #D32F2F; /* Vivid Red */
-            --brand-secondary: #003366; /* Deep Blue (Accent) */
-            --white: #ffffff;
-            --bg-light: #f8f9fa;
-        }
-
+        /* General Reset */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--bg-light);
-            color: #333;
-            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+            /* Adds padding to the bottom so the fixed image scroller doesn't cover text */
+            padding-bottom: 120px; 
         }
 
-        /* --- Header --- */
-        header {
-            background: var(--white);
-            padding: 15px 0;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 3px solid var(--brand-secondary);
-        }
-
-        .logo {
-            height: 75px;
-            width: auto;
-        }
-
-        /* --- Auto-Scrolling Gallery --- */
-        .gallery-section {
-            background: var(--white);
-            padding: 20px 0 0 0; /* Removed bottom padding to merge with offers */
-            overflow: hidden;
-        }
-
-        .slider {
-            background: white;
-            height: 220px;
-            margin: auto;
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-        }
-
-        .slide-track {
-            display: flex;
-            width: calc(300px * 26);
-            animation: scroll 60s linear infinite;
-        }
-
-        .slide {
-            height: 220px;
-            width: 280px;
-            margin-right: 20px;
-            display: flex;
-            align-items: center;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #eee;
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-300px * 13)); }
-        }
-
-        /* --- NEW: Offers Strip --- */
+        /* --- 1. TOP: RED OFFERS STRIP --- */
         .offers-container {
-            background: var(--brand-secondary); /* Blue Background */
+            width: 100%;
+            background-color: red; /* Requirement: Red Strip */
             color: white;
-            padding: 15px 0;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-
-        .offers-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 15px;
-            text-align: center;
-        }
-
-        .offer-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 5px 15px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50px;
-            transition: transform 0.3s;
-        }
-
-        .offer-item:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-        }
-
-        .offer-icon {
-            color: #FFD700; /* Gold Icon */
-            font-size: 18px;
-        }
-
-        .offer-text {
-            font-size: 14px;
-            font-weight: 600;
+            overflow: hidden;
+            padding: 12px 0;
             white-space: nowrap;
+            position: relative;
         }
 
-        /* --- Info Bar (Centered) --- */
-        .info-bar {
-            text-align: center; /* Centered as requested */
-            margin: 20px auto 10px;
+        .offers-text {
+            display: inline-block;
+            font-weight: bold;
+            font-size: 18px;
+            /* Animation loop */
+            animation: scrollText 20s linear infinite; 
+            padding-left: 100%; /* Starts text off-screen to the right */
         }
 
-        .about-link {
-            text-decoration: none;
-            color: var(--brand-primary); /* Red text */
-            font-weight: 700;
-            font-size: 16px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-            padding: 8px 20px;
-            border: 2px solid var(--brand-primary);
-            border-radius: 30px;
+        @keyframes scrollText {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* --- 2. MIDDLE: MAIN CONTENT --- */
+        .main-content {
+            padding: 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .main-content h1 { color: #333; }
+        .main-content p { color: #666; line-height: 1.6; }
+
+        /* --- 3. BOTTOM: IMAGE SCROLLER --- */
+        .bottom-image-scroller {
+            position: fixed; /* "Total Bottom" - Fixes it to the bottom of the screen */
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f1f1f1;
+            border-top: 3px solid #ddd;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+
+        .image-track {
+            display: inline-block;
+            animation: scrollImages 25s linear infinite;
+            padding-left: 100%; /* Starts images off-screen to the right */
+        }
+
+        .image-track img {
+            height: 80px; /* Adjust image height here */
+            margin: 0 15px;
+            vertical-align: middle;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             background: white;
         }
 
-        .about-link:hover {
-            background: var(--brand-primary);
-            color: white;
-            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+        @keyframes scrollImages {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
-
-        .info-icon {
-            font-family: serif;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        /* --- Form Section --- */
-        .form-wrapper {
-            max-width: 500px;
-            margin: 20px auto 80px;
-            background: var(--white);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-top: 6px solid var(--brand-primary); 
-        }
-
-        h1 {
-            text-align: center;
-            color: var(--brand-primary);
-            margin-bottom: 10px;
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        p.subtitle {
-            text-align: center;
-            color: #555;
-            margin-bottom: 30px;
-            font-size: 15px;
-            font-weight: 500;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--brand-primary);
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 15px;
-            box-sizing: border-box;
-            transition: all 0.3s;
-            font-family: inherit;
-            background: #fdfdfd;
-        }
-
-        input:focus, textarea:focus {
-            border-color: var(--brand-primary);
-            box-shadow: 0 0 5px rgba(211, 47, 47, 0.2);
-            outline: none;
-        }
-
-        /* Submit Button - RED */
-        button.submit-btn {
-            background-color: var(--brand-primary);
-            color: white;
-            border: none;
-            padding: 15px;
-            font-size: 17px;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            transition: background 0.3s, transform 0.2s;
-            margin-top: 10px;
-        }
-
-        button.submit-btn:hover {
-            background-color: #b71c1c;
-            transform: translateY(-2px);
-        }
-
-        /* Mobile Optimization for Offers */
-        @media (max-width: 600px) {
-            .offers-grid {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-            }
-            .offer-item {
-                width: 80%; /* Wider boxes on mobile */
-                justify-content: center;
-            }
-        }
-
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="https://i.ibb.co/ymwSrT4Z/PPSUNAACA-Logo.png" alt="PPSU Logo" class="logo">
-    </header>
-
-    <section class="gallery-section">
-        <div class="slider">
-            <div class="slide-track">
-                <div class="slide"><img src="https://i.ibb.co/20sDdbdh/EK5A0485.jpg" alt="Campus"></div>
-                <div class="slide"><img src="https://i.ibb.co/TB0LTCFR/Group-11-DSC-9011-2-3-DSC-9032-3-4-7-images-equi-patch-2.jpg" alt="Aerial"></div>
-                <div class="slide"><img src="https://i.ibb.co/xtWwLTzT/Group-14-DSC-9796-7-8-DSC-9805-6-7-4-images-patch-1.jpg" alt="Building"></div>
-                <div class="slide"><img src="https://i.ibb.co/8gV5nVJ5/Library-at-PPSU.jpg" alt="Library"></div>
-                <div class="slide"><img src="https://i.ibb.co/cK7SgRnG/2-DPPSU-Aerial-3.jpg" alt="Aerial 2"></div>
-                <div class="slide"><img src="https://i.ibb.co/Wjdh878/AI-Lab-IBM-Collaboration.jpg" alt="AI Lab"></div>
-                <div class="slide"><img src="https://i.ibb.co/RGpmXrFJ/Music-Room-at-PPSU.jpg" alt="Music"></div>
-                <div class="slide"><img src="https://i.ibb.co/7JdGgwhH/Salon-at-PPSU.jpg" alt="Salon"></div>
-                <div class="slide"><img src="https://i.ibb.co/jkB5DQtd/Physiotherapy-at-PPSU-1.jpg" alt="Physio"></div>
-                <div class="slide"><img src="https://i.ibb.co/s97J72zN/v49v9HRT/Solar-Images.jpg" alt="Solar"></div>
-                <div class="slide"><img src="https://i.ibb.co/tTN3nWLG/Group-9-DSC-9994-5-6-Kanchan-Ganga-5-Stop-Window-3-DSC-0007-8-9-4-images-equi-patch-2.jpg" alt="View"></div>
-                <div class="slide"><img src="https://i.ibb.co/5hfRZZzJ/Group-7-DSC-0385-6-7-DSC-0394-5-6-4-images-equi-patch-2.jpg" alt="Garden"></div>
-                <div class="slide"><img src="https://i.ibb.co/fVg7h1Pw/EK5A8514.jpg" alt="Students"></div>
-
-                <div class="slide"><img src="https://i.ibb.co/20sDdbdh/EK5A0485.jpg" alt="Campus"></div>
-                <div class="slide"><img src="https://i.ibb.co/TB0LTCFR/Group-11-DSC-9011-2-3-DSC-9032-3-4-7-images-equi-patch-2.jpg" alt="Aerial"></div>
-                <div class="slide"><img src="https://i.ibb.co/xtWwLTzT/Group-14-DSC-9796-7-8-DSC-9805-6-7-4-images-patch-1.jpg" alt="Building"></div>
-                <div class="slide"><img src="https://i.ibb.co/8gV5nVJ5/Library-at-PPSU.jpg" alt="Library"></div>
-                <div class="slide"><img src="https://i.ibb.co/cK7SgRnG/2-DPPSU-Aerial-3.jpg" alt="Aerial 2"></div>
-                <div class="slide"><img src="https://i.ibb.co/Wjdh878/AI-Lab-IBM-Collaboration.jpg" alt="AI Lab"></div>
-                <div class="slide"><img src="https://i.ibb.co/RGpmXrFJ/Music-Room-at-PPSU.jpg" alt="Music"></div>
-                <div class="slide"><img src="https://i.ibb.co/7JdGgwhH/Salon-at-PPSU.jpg" alt="Salon"></div>
-                <div class="slide"><img src="https://i.ibb.co/jkB5DQtd/Physiotherapy-at-PPSU-1.jpg" alt="Physio"></div>
-                <div class="slide"><img src="https://i.ibb.co/s97J72zN/v49v9HRT/Solar-Images.jpg" alt="Solar"></div>
-                <div class="slide"><img src="https://i.ibb.co/tTN3nWLG/Group-9-DSC-9994-5-6-Kanchan-Ganga-5-Stop-Window-3-DSC-0007-8-9-4-images-equi-patch-2.jpg" alt="View"></div>
-                <div class="slide"><img src="https://i.ibb.co/5hfRZZzJ/Group-7-DSC-0385-6-7-DSC-0394-5-6-4-images-equi-patch-2.jpg" alt="Garden"></div>
-                <div class="slide"><img src="https://i.ibb.co/fVg7h1Pw/EK5A8514.jpg" alt="Students"></div>
-            </div>
-        </div>
-    </section>
-
     <div class="offers-container">
-        <div class="offers-grid">
-            <div class="offer-item">
-                <i class="fa-solid fa-plane-departure offer-icon"></i>
-                <span class="offer-text">Free Flight Tickets</span>
-            </div>
-            <div class="offer-item">
-                <i class="fa-solid fa-graduation-cap offer-icon"></i>
-                <span class="offer-text">Scholarship upto ₹50,000</span>
-            </div>
-            <div class="offer-item">
-                <i class="fa-solid fa-map-location-dot offer-icon"></i>
-                <span class="offer-text">Free Campus Visit</span>
-            </div>
-            <div class="offer-item">
-                <i class="fa-solid fa-laptop offer-icon"></i>
-                <span class="offer-text">Free Laptop</span>
-            </div>
+        <div class="offers-text">
+            🔥 BIG SALE: 50% OFF EVERYTHING! &nbsp;&nbsp;&bull;&nbsp;&nbsp; 
+            LIMITED TIME OFFER &nbsp;&nbsp;&bull;&nbsp;&nbsp; 
+            BUY 1 GET 1 FREE &nbsp;&nbsp;&bull;&nbsp;&nbsp; 
+            FREE SHIPPING ON ORDERS OVER $50
         </div>
     </div>
 
-    <div class="info-bar">
-        <a href="about.html" class="about-link">
-            <span class="info-icon">i</span> About PPSU
-        </a>
+    <div class="main-content">
+        <h1>Website Main Content</h1>
+        <p>This is your main page area.</p>
+        <p>You will see the <strong>Red Offer Strip</strong> at the very top.</p>
+        <p>You will see the <strong>Image Scroller</strong> fixed at the very bottom of the screen.</p>
+        <p>Scroll down this page to see that the bottom images stay fixed!</p>
+        <br><br><br><br><br><br>
+        <p>More content here...</p>
     </div>
 
-    <div class="form-wrapper">
-        <h1>PPSU Campus Visit Registration</h1>
-        <p class="subtitle">For Consultants & Associates</p>
-
-        <form action="https://formspree.io/f/mqebollp" method="POST">
-            
-            <div class="form-group">
-                <label>Name *</label>
-                <input type="text" name="name" required placeholder="Full Name">
-            </div>
-
-            <div class="form-group">
-                <label>Consultancy Name *</label>
-                <input type="text" name="consultancy_name" required placeholder="e.g. EduGlobal Services">
-            </div>
-
-            <div class="form-group">
-                <label>City *</label>
-                <input type="text" name="city" required placeholder="e.g. Hyderabad">
-            </div>
-
-            <div class="form-group">
-                <label>Office Address *</label>
-                <textarea name="office_address" rows="3" required placeholder="Full Street Address"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Mobile No *</label>
-                <input type="tel" name="mobile" required placeholder="+91">
-            </div>
-
-            <button type="submit" class="submit-btn">Register for Visit</button>
-        </form>
+    <div class="bottom-image-scroller">
+        <div class="image-track">
+            <img src="https://via.placeholder.com/150x80/ff5733/fff?text=Offer+1" alt="Image 1">
+            <img src="https://via.placeholder.com/150x80/33c1ff/fff?text=Offer+2" alt="Image 2">
+            <img src="https://via.placeholder.com/150x80/7d3c98/fff?text=Offer+3" alt="Image 3">
+            <img src="https://via.placeholder.com/150x80/28b463/fff?text=Offer+4" alt="Image 4">
+            <img src="https://via.placeholder.com/150x80/f1c40f/fff?text=Offer+5" alt="Image 5">
+            <img src="https://via.placeholder.com/150x80/e74c3c/fff?text=Offer+6" alt="Image 6">
+        </div>
     </div>
 
 </body>
