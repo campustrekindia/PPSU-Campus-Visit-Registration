@@ -9,9 +9,9 @@
 
     <style>
         :root {
-            /* PRIMARY IS RED */
-            --brand-primary: #D32F2F; 
-            --brand-secondary: #003366; 
+            /* BRAND THEME: RED & BLUE */
+            --brand-primary: #D32F2F; /* Vivid Red */
+            --brand-secondary: #003366; /* Deep Blue */
             --text-dark: #222;
         }
 
@@ -32,38 +32,39 @@
             max-width: 900px;
             margin: 60px auto;
             
-            /* Glassmorphism */
-            background: rgba(255, 255, 255, 0.80); 
+            /* Glassmorphism Effect */
+            background: rgba(255, 255, 255, 0.85); 
             backdrop-filter: blur(12px); 
             -webkit-backdrop-filter: blur(12px);
             
             padding: 50px;
             border-radius: 16px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-top: 5px solid var(--brand-primary); /* Red Top Border */
         }
 
-        /* --- FIXED LINK HERE: Points to index.html --- */
+        /* --- Back Button --- */
         .back-btn {
             display: inline-block;
             margin-bottom: 30px;
-            padding: 10px 25px;
-            background-color: var(--brand-primary); /* RED Button */
+            padding: 12px 25px;
+            background-color: var(--brand-primary); /* Red Button */
             color: #fff;
             text-decoration: none;
-            font-weight: 600;
-            border-radius: 5px;
-            transition: background 0.3s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-weight: 700;
+            border-radius: 6px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(211, 47, 47, 0.3);
         }
 
         .back-btn:hover {
-            background-color: #b71c1c; 
+            background-color: #b71c1c; /* Darker Red */
+            transform: translateY(-2px);
         }
 
         /* --- BIG HEADLINE --- */
         h1.main-title {
-            color: var(--brand-primary); /* RED Heading */
+            color: var(--brand-primary); /* Red Heading */
             font-size: 3.5rem;
             text-align: center;
             margin-bottom: 15px;
@@ -85,8 +86,8 @@
 
         /* --- Feature Blocks (Why PPSU?) --- */
         h2.section-title {
-            color: var(--brand-primary); /* Red Title */
-            border-left: 6px solid var(--brand-secondary); /* Blue accent border */
+            color: var(--brand-secondary); /* Blue Title */
+            border-left: 6px solid var(--brand-primary); /* Red accent border */
             padding-left: 15px;
             margin-bottom: 30px;
             font-size: 2rem;
@@ -104,7 +105,7 @@
             background: #ffffff; 
             padding: 30px;
             border-radius: 12px;
-            border-top: 5px solid var(--brand-primary); /* Default RED top border */
+            border-top: 5px solid var(--brand-secondary); /* Blue top border */
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             text-align: center;
             transition: transform 0.3s;
@@ -112,11 +113,11 @@
 
         .feature-card:hover {
             transform: translateY(-5px);
-            border-top-color: var(--brand-secondary); /* Hover turns border Blue */
+            border-top-color: var(--brand-primary); /* Hover turns border Red */
         }
 
         .feature-card h3 {
-            color: var(--brand-primary);
+            color: var(--brand-secondary); /* Blue text */
             margin-top: 0;
             font-size: 1.3rem;
             margin-bottom: 12px;
