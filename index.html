@@ -32,51 +32,17 @@
         /* --- Header --- */
         header {
             background: var(--white);
-            padding: 10px 20px;
-            display: flex; /* Flexbox for layout */
-            align-items: center; /* Center vertically */
-            justify-content: center; /* Center the Logo */
+            padding: 15px 0;
+            text-align: center; /* Center the logo */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border-bottom: 3px solid var(--brand-secondary);
         }
 
-        /* About Link (Top Left) */
-        .about-link {
-            position: absolute;
-            left: 20px;
-            text-decoration: none;
-            color: var(--brand-secondary); /* Blue Text */
-            font-weight: 700;
-            font-size: 15px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: color 0.3s;
-        }
-
-        .about-link:hover {
-            color: var(--brand-primary); /* Red on Hover */
-        }
-
-        /* Info Icon circle */
-        .info-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 20px;
-            height: 20px;
-            border: 2px solid currentColor;
-            border-radius: 50%;
-            font-size: 12px;
-            font-weight: bold;
-            font-family: serif;
-        }
-
         .logo {
-            height: 70px; /* Slightly smaller to fit nicely */
+            height: 75px;
             width: auto;
         }
 
@@ -85,6 +51,7 @@
             background: var(--white);
             padding: 20px 0;
             overflow: hidden;
+            border-bottom: 1px solid #eee; /* Light separator */
         }
 
         .slider {
@@ -125,10 +92,48 @@
             100% { transform: translateX(calc(-300px * 13)); }
         }
 
+        /* --- New Info Link Bar (Below Gallery) --- */
+        .info-bar {
+            max-width: 500px; /* Matches form width for alignment */
+            margin: 15px auto 0; /* Space above form */
+            padding: 0 10px;
+            text-align: left; /* Aligns link to the left */
+        }
+
+        .about-link {
+            text-decoration: none;
+            color: var(--brand-secondary); /* Blue text */
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s, transform 0.2s;
+            padding: 5px 0;
+        }
+
+        .about-link:hover {
+            color: var(--brand-primary); /* Red on hover */
+            transform: translateX(5px); /* Slight movement effect */
+        }
+
+        .info-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border: 2px solid currentColor;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: bold;
+            font-family: serif;
+        }
+
         /* --- Form Section --- */
         .form-wrapper {
             max-width: 500px;
-            margin: 40px auto 80px;
+            margin: 20px auto 80px; /* Reduced top margin since info bar is above */
             background: var(--white);
             padding: 40px;
             border-radius: 12px;
@@ -202,44 +207,11 @@
             transform: translateY(-2px);
         }
 
-        /* Mobile Optimization for Header */
-        @media (max-width: 600px) {
-            header {
-                justify-content: center;
-                padding: 10px;
-                position: relative; /* Remove sticky on mobile if desired, or keep */
-            }
-            
-            .about-link {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                left: 15px;
-                font-size: 0; /* Hide text on very small screens */
-            }
-            
-            .about-link .info-icon {
-                font-size: 14px; /* Keep icon visible */
-                width: 24px;
-                height: 24px;
-            }
-            
-            /* Show text again if screen isn't TOO small */
-            @media (min-width: 380px) {
-                .about-link { font-size: 14px; }
-            }
-        }
-
     </style>
 </head>
 <body>
 
     <header>
-        <a href="about.html" class="about-link">
-            <span class="info-icon">i</span> 
-            About PPSU
-        </a>
-
         <img src="https://i.ibb.co/ymwSrT4Z/PPSUNAACA-Logo.png" alt="PPSU Logo" class="logo">
     </header>
 
@@ -276,6 +248,12 @@
             </div>
         </div>
     </section>
+
+    <div class="info-bar">
+        <a href="about.html" class="about-link">
+            <span class="info-icon">i</span> About PPSU
+        </a>
+    </div>
 
     <div class="form-wrapper">
         <h1>PPSU Campus Visit Registration</h1>
