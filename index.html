@@ -32,17 +32,51 @@
         /* --- Header --- */
         header {
             background: var(--white);
-            padding: 15px 0;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 10px 20px;
+            display: flex; /* Flexbox for layout */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center the Logo */
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border-bottom: 3px solid var(--brand-secondary);
         }
 
+        /* About Link (Top Left) */
+        .about-link {
+            position: absolute;
+            left: 20px;
+            text-decoration: none;
+            color: var(--brand-secondary); /* Blue Text */
+            font-weight: 700;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+
+        .about-link:hover {
+            color: var(--brand-primary); /* Red on Hover */
+        }
+
+        /* Info Icon circle */
+        .info-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border: 2px solid currentColor;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: bold;
+            font-family: serif;
+        }
+
         .logo {
-            height: 75px;
+            height: 70px; /* Slightly smaller to fit nicely */
             width: auto;
         }
 
@@ -168,50 +202,31 @@
             transform: translateY(-2px);
         }
 
-        /* --- NEW Floating Logo Button (Replaces "i" Button) --- */
-        .floating-logo-btn {
-            position: fixed;
-            bottom: 30px;
-            left: 30px; /* Kept on left as requested */
-            width: 70px; /* Size for Desktop */
-            height: 70px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            
-            /* Professional Shadow & Border */
-            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-            border: 3px solid var(--brand-primary); /* Red border */
-            
-            z-index: 1000;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
-            cursor: pointer;
-            overflow: hidden;
-        }
-
-        .floating-logo-btn img {
-            width: 80%;
-            height: auto;
-            object-fit: contain;
-        }
-
-        /* Hover Effect - Makes it "Pop" */
-        .floating-logo-btn:hover {
-            transform: scale(1.15) rotate(3deg);
-            box-shadow: 0 10px 25px rgba(211, 47, 47, 0.4); /* Red glow on hover */
-            border-color: var(--brand-secondary); /* Border turns Blue on hover */
-        }
-
-        /* Mobile Optimization */
+        /* Mobile Optimization for Header */
         @media (max-width: 600px) {
-            .floating-logo-btn {
-                width: 60px; /* Slightly smaller for mobile */
-                height: 60px;
-                bottom: 20px;
-                left: 20px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            header {
+                justify-content: center;
+                padding: 10px;
+                position: relative; /* Remove sticky on mobile if desired, or keep */
+            }
+            
+            .about-link {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 15px;
+                font-size: 0; /* Hide text on very small screens */
+            }
+            
+            .about-link .info-icon {
+                font-size: 14px; /* Keep icon visible */
+                width: 24px;
+                height: 24px;
+            }
+            
+            /* Show text again if screen isn't TOO small */
+            @media (min-width: 380px) {
+                .about-link { font-size: 14px; }
             }
         }
 
@@ -220,6 +235,11 @@
 <body>
 
     <header>
+        <a href="about.html" class="about-link">
+            <span class="info-icon">i</span> 
+            About PPSU
+        </a>
+
         <img src="https://i.ibb.co/ymwSrT4Z/PPSUNAACA-Logo.png" alt="PPSU Logo" class="logo">
     </header>
 
@@ -291,10 +311,6 @@
             <button type="submit" class="submit-btn">Register for Visit</button>
         </form>
     </div>
-
-    <a href="about.html" class="floating-logo-btn" title="About PPSU">
-        <img src="https://i.ibb.co/FkSVFvHy/PPSUNAACA-Logo.png" alt="PPSU Logo">
-    </a>
 
 </body>
 </html>
