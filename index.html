@@ -3,117 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrolling Layout</title>
+    <title>Final Layout</title>
     <style>
         /* General Reset */
-        body {
+        body, html {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            /* Adds padding to the bottom so the fixed image scroller doesn't cover text */
-            padding-bottom: 120px; 
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* --- 1. TOP: RED OFFERS STRIP --- */
+        /* --- 1. RED OFFERS STRIP (TOP) --- */
         .offers-container {
             width: 100%;
-            background-color: red; /* Requirement: Red Strip */
+            background-color: red; /* Strip is red */
             color: white;
             overflow: hidden;
-            padding: 12px 0;
             white-space: nowrap;
-            position: relative;
+            padding: 12px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
         }
 
         .offers-text {
             display: inline-block;
             font-weight: bold;
             font-size: 18px;
-            /* Animation loop */
-            animation: scrollText 20s linear infinite; 
-            padding-left: 100%; /* Starts text off-screen to the right */
+            /* Animation to keep scrolling infinitely */
+            animation: scrollText 20s linear infinite;
         }
 
+        /* Keyframes for Text Scrolling */
         @keyframes scrollText {
-            0% { transform: translateX(0); }
+            0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
         }
 
-        /* --- 2. MIDDLE: MAIN CONTENT --- */
+        /* --- 2. MAIN CONTENT AREA --- */
         .main-content {
+            flex: 1; /* Takes up remaining space pushing images to bottom */
             padding: 40px;
             text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
+            background-color: #f4f4f4;
+            overflow-y: auto; /* Allows scrolling if content is long */
         }
-        
-        .main-content h1 { color: #333; }
-        .main-content p { color: #666; line-height: 1.6; }
 
-        /* --- 3. BOTTOM: IMAGE SCROLLER --- */
-        .bottom-image-scroller {
-            position: fixed; /* "Total Bottom" - Fixes it to the bottom of the screen */
-            bottom: 0;
-            left: 0;
+        /* --- 3. SCROLLING IMAGES (BOTTOM) --- */
+        .image-scroller-container {
             width: 100%;
-            background-color: #f1f1f1;
-            border-top: 3px solid #ddd;
-            padding: 10px 0;
+            background-color: #fff;
             overflow: hidden;
-            white-space: nowrap;
-            z-index: 1000;
+            padding: 20px 0;
+            border-top: 1px solid #ddd;
+            /* Ensures it sits at the bottom */
+            flex-shrink: 0; 
         }
 
         .image-track {
-            display: inline-block;
-            animation: scrollImages 25s linear infinite;
-            padding-left: 100%; /* Starts images off-screen to the right */
+            display: flex;
+            width: calc(250px * 10); /* Adjust width based on number of images */
+            animation: scrollImages 15s linear infinite;
         }
 
-        .image-track img {
-            height: 80px; /* Adjust image height here */
-            margin: 0 15px;
-            vertical-align: middle;
+        .slide-image {
+            height: 100px;
+            width: 200px;
+            margin-right: 50px; /* Space between images */
+            object-fit: cover;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            background: white;
+            background-color: #ddd; /* Placeholder color if image fails */
         }
 
+        /* Keyframes for Image Scrolling */
         @keyframes scrollImages {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+            100% { transform: translateX(calc(-250px * 5)); } /* Moves left by width of 5 slides */
         }
+
+        /* Pause animations on hover for better user experience */
+        .offers-container:hover .offers-text,
+        .image-track:hover {
+            animation-play-state: paused;
+        }
+
     </style>
 </head>
 <body>
 
     <div class="offers-container">
         <div class="offers-text">
-            🔥 BIG SALE: 50% OFF EVERYTHING! &nbsp;&nbsp;&bull;&nbsp;&nbsp; 
-            LIMITED TIME OFFER &nbsp;&nbsp;&bull;&nbsp;&nbsp; 
-            BUY 1 GET 1 FREE &nbsp;&nbsp;&bull;&nbsp;&nbsp; 
-            FREE SHIPPING ON ORDERS OVER $50
+            🚨 SPECIAL OFFER: Buy 1 Get 1 Free on all Courses! &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+            🔥 NEW LAUNCH: AI Web Design Tools &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+            ✨ Use Code: WELCOME2026 for 20% Discount
         </div>
     </div>
 
     <div class="main-content">
-        <h1>Website Main Content</h1>
-        <p>This is your main page area.</p>
-        <p>You will see the <strong>Red Offer Strip</strong> at the very top.</p>
-        <p>You will see the <strong>Image Scroller</strong> fixed at the very bottom of the screen.</p>
-        <p>Scroll down this page to see that the bottom images stay fixed!</p>
-        <br><br><br><br><br><br>
-        <p>More content here...</p>
+        <h1>Welcome to Eject Solutions</h1>
+        <p>This is your main website area.</p>
+        <p>The offers are scrolling above, and the partner images are scrolling at the very bottom.</p>
     </div>
 
-    <div class="bottom-image-scroller">
+    <div class="image-scroller-container">
         <div class="image-track">
-            <img src="https://via.placeholder.com/150x80/ff5733/fff?text=Offer+1" alt="Image 1">
-            <img src="https://via.placeholder.com/150x80/33c1ff/fff?text=Offer+2" alt="Image 2">
-            <img src="https://via.placeholder.com/150x80/7d3c98/fff?text=Offer+3" alt="Image 3">
-            <img src="https://via.placeholder.com/150x80/28b463/fff?text=Offer+4" alt="Image 4">
-            <img src="https://via.placeholder.com/150x80/f1c40f/fff?text=Offer+5" alt="Image 5">
-            <img src="https://via.placeholder.com/150x80/e74c3c/fff?text=Offer+6" alt="Image 6">
+            <img src="https://via.placeholder.com/200x100?text=Logo+1" alt="Logo 1" class="slide-image">
+            <img src="https://via.placeholder.com/200x100?text=Logo+2" alt="Logo 2" class="slide-image">
+            <img src="https://via.placeholder.com/200x100?text=Logo+3" alt="Logo 3" class="slide-image">
+            <img src="https://via.placeholder.com/200x100?text=Logo+4" alt="Logo 4" class="slide-image">
+            <img src="https://via.placeholder.com/200x100?text=Logo+5" alt="Logo 5" class="slide-image">
+            
+            <img src="https://via.placeholder.com/200x100?text=Logo+1" alt="Logo 1" class="slide-image">
+            <img src="https://via.placeholder.com/200x100?text=Logo+2" alt="Logo 2" class="slide-image">
+            <img src="https://via.placeholder.com/200x100?text=Logo+3" alt="Logo 3" class="slide-image">
+            <img src="https://via.placeholder.com/200x100?text=Logo+4" alt="Logo 4" class="slide-image">
+            <img src="https://via.placeholder.com/200x100?text=Logo+5" alt="Logo 5" class="slide-image">
         </div>
     </div>
 
