@@ -3,123 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Final Layout</title>
+    <title>PPSU Campus Visit Registration</title>
+    
+    <meta property="og:title" content="PPSU Campus Visit Registration">
+    <meta property="og:description" content="Official registration portal for Consultants and Associates planning a campus visit to P P Savani University.">
+    <meta property="og:image" content="https://i.ibb.co/TB0LTCFR/Group-11-DSC-9011-2-3-DSC-9032-3-4-7-images-equi-patch-2.jpg">
+    
+    <link rel="icon" type="image/png" href="https://i.ibb.co/FkSVFvHy/PPSUNAACA-Logo.png">
+
     <style>
-        /* General Reset */
-        body, html {
+        :root {
+            /* PRIMARY IS RED */
+            --brand-primary: #D32F2F; /* Vivid Red */
+            --brand-secondary: #003366; /* Deep Blue (Accent) */
+            --white: #ffffff;
+            --bg-light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+            background-color: var(--bg-light);
+            color: #333;
+            overflow-x: hidden;
         }
 
-        /* --- 1. RED OFFERS STRIP (TOP) --- */
-        .offers-container {
-            width: 100%;
-            background-color: red; /* Strip is red */
-            color: white;
-            overflow: hidden;
-            white-space: nowrap;
-            padding: 12px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            z-index: 1000;
+        /* --- Header --- */
+        header {
+            background: var(--white);
+            padding: 15px 0;
+            text-align: center; /* Center the logo */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid var(--brand-secondary);
         }
 
-        .offers-text {
-            display: inline-block;
-            font-weight: bold;
-            font-size: 18px;
-            /* Animation to keep scrolling infinitely */
-            animation: scrollText 20s linear infinite;
+        .logo {
+            height: 75px;
+            width: auto;
         }
 
-        /* Keyframes for Text Scrolling */
-        @keyframes scrollText {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* --- 2. MAIN CONTENT AREA --- */
-        .main-content {
-            flex: 1; /* Takes up remaining space pushing images to bottom */
-            padding: 40px;
-            text-align: center;
-            background-color: #f4f4f4;
-            overflow-y: auto; /* Allows scrolling if content is long */
-        }
-
-        /* --- 3. SCROLLING IMAGES (BOTTOM) --- */
-        .image-scroller-container {
-            width: 100%;
-            background-color: #fff;
-            overflow: hidden;
+        /* --- Auto-Scrolling Gallery --- */
+        .gallery-section {
+            background: var(--white);
             padding: 20px 0;
-            border-top: 1px solid #ddd;
-            /* Ensures it sits at the bottom */
-            flex-shrink: 0; 
+            overflow: hidden;
+            border-bottom: 1px solid #eee; /* Light separator */
         }
 
-        .image-track {
+        .slider {
+            background: white;
+            height: 220px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .slide-track {
             display: flex;
-            width: calc(250px * 10); /* Adjust width based on number of images */
-            animation: scrollImages 15s linear infinite;
+            width: calc(300px * 26);
+            animation: scroll 60s linear infinite;
         }
 
-        .slide-image {
-            height: 100px;
-            width: 200px;
-            margin-right: 50px; /* Space between images */
-            object-fit: cover;
+        .slide {
+            height: 220px;
+            width: 280px;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
             border-radius: 8px;
-            background-color: #ddd; /* Placeholder color if image fails */
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
         }
 
-        /* Keyframes for Image Scrolling */
-        @keyframes scrollImages {
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 5)); } /* Moves left by width of 5 slides */
+            100% { transform: translateX(calc(-300px * 13)); }
         }
 
-        /* Pause animations on hover for better user experience */
-        .offers-container:hover .offers-text,
-        .image-track:hover {
-            animation-play-state: paused;
+        /* --- New Info Link Bar (Below Gallery) --- */
+        .info-bar {
+            max-width: 500px; /* Matches form width for alignment */
+            margin: 15px auto 0; /* Space above form */
+            padding: 0 10px;
+            text-align: left; /* Aligns link to the left */
+        }
+
+        .about-link {
+            text-decoration: none;
+            color: var(--brand-secondary); /* Blue text */
+            font-weight: 700;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s, transform 0.2s;
+            padding: 5px 0;
+        }
+
+        .about-link:hover {
+            color: var(--brand-primary); /* Red on hover */
+            transform: translateX(5px); /* Slight movement effect */
+        }
+
+        .info-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border: 2px solid currentColor;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: bold;
+            font-family: serif;
+        }
+
+        /* --- Form Section --- */
+        .form-wrapper {
+            max-width: 500px;
+            margin: 20px auto 80px; /* Reduced top margin since info bar is above */
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 6px solid var(--brand-primary); 
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--brand-primary);
+            margin-bottom: 10px;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--brand-primary);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: all 0.3s;
+            font-family: inherit;
+            background: #fdfdfd;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--brand-primary);
+            box-shadow: 0 0 5px rgba(211, 47, 47, 0.2);
+            outline: none;
+        }
+
+        /* Submit Button - RED */
+        button.submit-btn {
+            background-color: var(--brand-primary);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 17px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 10px;
+        }
+
+        button.submit-btn:hover {
+            background-color: #b71c1c;
+            transform: translateY(-2px);
         }
 
     </style>
 </head>
 <body>
 
-    <div class="offers-container">
-        <div class="offers-text">
-            🚨 SPECIAL OFFER: Buy 1 Get 1 Free on all Courses! &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
-            🔥 NEW LAUNCH: AI Web Design Tools &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
-            ✨ Use Code: WELCOME2026 for 20% Discount
+    <header>
+        <img src="https://i.ibb.co/ymwSrT4Z/PPSUNAACA-Logo.png" alt="PPSU Logo" class="logo">
+    </header>
+
+    <section class="gallery-section">
+        <div class="slider">
+            <div class="slide-track">
+                <div class="slide"><img src="https://i.ibb.co/20sDdbdh/EK5A0485.jpg" alt="Campus"></div>
+                <div class="slide"><img src="https://i.ibb.co/TB0LTCFR/Group-11-DSC-9011-2-3-DSC-9032-3-4-7-images-equi-patch-2.jpg" alt="Aerial"></div>
+                <div class="slide"><img src="https://i.ibb.co/xtWwLTzT/Group-14-DSC-9796-7-8-DSC-9805-6-7-4-images-patch-1.jpg" alt="Building"></div>
+                <div class="slide"><img src="https://i.ibb.co/8gV5nVJ5/Library-at-PPSU.jpg" alt="Library"></div>
+                <div class="slide"><img src="https://i.ibb.co/cK7SgRnG/2-DPPSU-Aerial-3.jpg" alt="Aerial 2"></div>
+                <div class="slide"><img src="https://i.ibb.co/Wjdh878/AI-Lab-IBM-Collaboration.jpg" alt="AI Lab"></div>
+                <div class="slide"><img src="https://i.ibb.co/RGpmXrFJ/Music-Room-at-PPSU.jpg" alt="Music"></div>
+                <div class="slide"><img src="https://i.ibb.co/7JdGgwhH/Salon-at-PPSU.jpg" alt="Salon"></div>
+                <div class="slide"><img src="https://i.ibb.co/jkB5DQtd/Physiotherapy-at-PPSU-1.jpg" alt="Physio"></div>
+                <div class="slide"><img src="https://i.ibb.co/s97J72zN/v49v9HRT/Solar-Images.jpg" alt="Solar"></div>
+                <div class="slide"><img src="https://i.ibb.co/tTN3nWLG/Group-9-DSC-9994-5-6-Kanchan-Ganga-5-Stop-Window-3-DSC-0007-8-9-4-images-equi-patch-2.jpg" alt="View"></div>
+                <div class="slide"><img src="https://i.ibb.co/5hfRZZzJ/Group-7-DSC-0385-6-7-DSC-0394-5-6-4-images-equi-patch-2.jpg" alt="Garden"></div>
+                <div class="slide"><img src="https://i.ibb.co/fVg7h1Pw/EK5A8514.jpg" alt="Students"></div>
+
+                <div class="slide"><img src="https://i.ibb.co/20sDdbdh/EK5A0485.jpg" alt="Campus"></div>
+                <div class="slide"><img src="https://i.ibb.co/TB0LTCFR/Group-11-DSC-9011-2-3-DSC-9032-3-4-7-images-equi-patch-2.jpg" alt="Aerial"></div>
+                <div class="slide"><img src="https://i.ibb.co/xtWwLTzT/Group-14-DSC-9796-7-8-DSC-9805-6-7-4-images-patch-1.jpg" alt="Building"></div>
+                <div class="slide"><img src="https://i.ibb.co/8gV5nVJ5/Library-at-PPSU.jpg" alt="Library"></div>
+                <div class="slide"><img src="https://i.ibb.co/cK7SgRnG/2-DPPSU-Aerial-3.jpg" alt="Aerial 2"></div>
+                <div class="slide"><img src="https://i.ibb.co/Wjdh878/AI-Lab-IBM-Collaboration.jpg" alt="AI Lab"></div>
+                <div class="slide"><img src="https://i.ibb.co/RGpmXrFJ/Music-Room-at-PPSU.jpg" alt="Music"></div>
+                <div class="slide"><img src="https://i.ibb.co/7JdGgwhH/Salon-at-PPSU.jpg" alt="Salon"></div>
+                <div class="slide"><img src="https://i.ibb.co/jkB5DQtd/Physiotherapy-at-PPSU-1.jpg" alt="Physio"></div>
+                <div class="slide"><img src="https://i.ibb.co/s97J72zN/v49v9HRT/Solar-Images.jpg" alt="Solar"></div>
+                <div class="slide"><img src="https://i.ibb.co/tTN3nWLG/Group-9-DSC-9994-5-6-Kanchan-Ganga-5-Stop-Window-3-DSC-0007-8-9-4-images-equi-patch-2.jpg" alt="View"></div>
+                <div class="slide"><img src="https://i.ibb.co/5hfRZZzJ/Group-7-DSC-0385-6-7-DSC-0394-5-6-4-images-equi-patch-2.jpg" alt="Garden"></div>
+                <div class="slide"><img src="https://i.ibb.co/fVg7h1Pw/EK5A8514.jpg" alt="Students"></div>
+            </div>
         </div>
+    </section>
+
+    <div class="info-bar">
+        <a href="about.html" class="about-link">
+            <span class="info-icon">i</span> About PPSU
+        </a>
     </div>
 
-    <div class="main-content">
-        <h1>Welcome to Eject Solutions</h1>
-        <p>This is your main website area.</p>
-        <p>The offers are scrolling above, and the partner images are scrolling at the very bottom.</p>
-    </div>
+    <div class="form-wrapper">
+        <h1>PPSU Campus Visit Registration</h1>
+        <p class="subtitle">For Consultants & Associates</p>
 
-    <div class="image-scroller-container">
-        <div class="image-track">
-            <img src="https://via.placeholder.com/200x100?text=Logo+1" alt="Logo 1" class="slide-image">
-            <img src="https://via.placeholder.com/200x100?text=Logo+2" alt="Logo 2" class="slide-image">
-            <img src="https://via.placeholder.com/200x100?text=Logo+3" alt="Logo 3" class="slide-image">
-            <img src="https://via.placeholder.com/200x100?text=Logo+4" alt="Logo 4" class="slide-image">
-            <img src="https://via.placeholder.com/200x100?text=Logo+5" alt="Logo 5" class="slide-image">
+        <form action="https://formspree.io/f/mqebollp" method="POST">
             
-            <img src="https://via.placeholder.com/200x100?text=Logo+1" alt="Logo 1" class="slide-image">
-            <img src="https://via.placeholder.com/200x100?text=Logo+2" alt="Logo 2" class="slide-image">
-            <img src="https://via.placeholder.com/200x100?text=Logo+3" alt="Logo 3" class="slide-image">
-            <img src="https://via.placeholder.com/200x100?text=Logo+4" alt="Logo 4" class="slide-image">
-            <img src="https://via.placeholder.com/200x100?text=Logo+5" alt="Logo 5" class="slide-image">
-        </div>
+            <div class="form-group">
+                <label>Name *</label>
+                <input type="text" name="name" required placeholder="Full Name">
+            </div>
+
+            <div class="form-group">
+                <label>Consultancy Name *</label>
+                <input type="text" name="consultancy_name" required placeholder="e.g. EduGlobal Services">
+            </div>
+
+            <div class="form-group">
+                <label>City *</label>
+                <input type="text" name="city" required placeholder="e.g. Hyderabad">
+            </div>
+
+            <div class="form-group">
+                <label>Office Address *</label>
+                <textarea name="office_address" rows="3" required placeholder="Full Street Address"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Mobile No *</label>
+                <input type="tel" name="mobile" required placeholder="+91">
+            </div>
+
+            <button type="submit" class="submit-btn">Register for Visit</button>
+        </form>
     </div>
 
 </body>
