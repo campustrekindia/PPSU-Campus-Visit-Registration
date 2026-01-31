@@ -1,3 +1,16 @@
+Here is the updated code for **`index.html`**.
+
+I have replaced the plain "i" button with a **Floating PPSU Logo Button**.
+
+* **Impressive Design:** It now has a white circular base, a red brand border, and a "floating" shadow effect.
+* **Interactive:** It has a smooth "bouncy" animation when you hover over it.
+* **Mobile Optimized:** It automatically adjusts its size on mobile screens so it looks perfect without blocking the view.
+
+### **File: `index.html**`
+
+*Replace your entire current `index.html` code with this.*
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +51,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 3px solid var(--brand-secondary); /* Blue border at bottom */
+            border-bottom: 3px solid var(--brand-secondary);
         }
 
         .logo {
@@ -99,13 +112,12 @@
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            /* Top border is RED (Primary) */
             border-top: 6px solid var(--brand-primary); 
         }
 
         h1 {
             text-align: center;
-            color: var(--brand-primary); /* Red Heading */
+            color: var(--brand-primary);
             margin-bottom: 10px;
             font-size: 26px;
             font-weight: 700;
@@ -128,7 +140,7 @@
             margin-bottom: 8px;
             font-weight: 600;
             font-size: 14px;
-            color: var(--brand-primary); /* Red Labels */
+            color: var(--brand-primary);
         }
 
         input, textarea {
@@ -144,7 +156,7 @@
         }
 
         input:focus, textarea:focus {
-            border-color: var(--brand-primary); /* Red focus border */
+            border-color: var(--brand-primary);
             box-shadow: 0 0 5px rgba(211, 47, 47, 0.2);
             outline: none;
         }
@@ -165,35 +177,55 @@
         }
 
         button.submit-btn:hover {
-            background-color: #b71c1c; /* Darker Red */
+            background-color: #b71c1c;
             transform: translateY(-2px);
         }
 
-        /* --- Info Button (Bottom Left) - BLUE (Accent) --- */
-        .info-btn {
+        /* --- NEW Floating Logo Button (Replaces "i" Button) --- */
+        .floating-logo-btn {
             position: fixed;
-            bottom: 25px;
-            left: 25px;
-            width: 55px;
-            height: 55px;
-            background-color: var(--brand-secondary); /* Blue Button */
-            color: white;
+            bottom: 30px;
+            left: 30px; /* Kept on left as requested */
+            width: 70px; /* Size for Desktop */
+            height: 70px;
+            background: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: serif;
-            font-weight: bold;
-            font-size: 26px;
-            box-shadow: 0 4px 15px rgba(0, 51, 102, 0.4);
-            text-decoration: none;
-            transition: transform 0.3s;
+            
+            /* Professional Shadow & Border */
+            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+            border: 3px solid var(--brand-primary); /* Red border */
+            
             z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
+            cursor: pointer;
+            overflow: hidden;
         }
 
-        .info-btn:hover {
-            transform: scale(1.1);
-            background-color: #002244;
+        .floating-logo-btn img {
+            width: 80%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Hover Effect - Makes it "Pop" */
+        .floating-logo-btn:hover {
+            transform: scale(1.15) rotate(3deg);
+            box-shadow: 0 10px 25px rgba(211, 47, 47, 0.4); /* Red glow on hover */
+            border-color: var(--brand-secondary); /* Border turns Blue on hover */
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 600px) {
+            .floating-logo-btn {
+                width: 60px; /* Slightly smaller for mobile */
+                height: 60px;
+                bottom: 20px;
+                left: 20px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            }
         }
 
     </style>
@@ -273,7 +305,11 @@
         </form>
     </div>
 
-    <a href="Code2.html" class="info-btn">i</a>
+    <a href="about.html" class="floating-logo-btn" title="About PPSU">
+        <img src="https://i.ibb.co/FkSVFvHy/PPSUNAACA-Logo.png" alt="PPSU Logo">
+    </a>
 
 </body>
 </html>
+
+```
