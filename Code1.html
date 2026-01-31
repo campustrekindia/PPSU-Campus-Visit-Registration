@@ -3,210 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About PPSU</title>
-
+    <title>PPSU Campus Visit Registration</title>
+    
+    <meta property="og:title" content="PPSU Campus Visit Registration">
+    <meta property="og:description" content="Official registration portal for Consultants and Associates planning a campus visit to P P Savani University.">
+    <meta property="og:image" content="https://i.ibb.co/TB0LTCFR/Group-11-DSC-9011-2-3-DSC-9032-3-4-7-images-equi-patch-2.jpg">
+    
     <link rel="icon" type="image/png" href="https://i.ibb.co/FkSVFvHy/PPSUNAACA-Logo.png">
 
     <style>
         :root {
             /* PRIMARY IS RED */
-            --brand-primary: #D32F2F; 
-            --brand-secondary: #003366; 
-            --text-dark: #222;
+            --brand-primary: #D32F2F; /* Vivid Red */
+            --brand-secondary: #003366; /* Deep Blue (Accent) */
+            --white: #ffffff;
+            --bg-light: #f8f9fa;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
             margin: 0;
             padding: 0;
-            color: var(--text-dark);
-            
-            /* Background Configuration */
-            background: url('https://i.ibb.co/xtM8vdL5/image.png') no-repeat center center fixed;
-            background-size: cover;
+            background-color: var(--bg-light);
+            color: #333;
+            overflow-x: hidden;
         }
 
-        /* The Glass Container */
-        .container {
-            max-width: 900px;
-            margin: 60px auto;
-            
-            /* Glassmorphism */
-            background: rgba(255, 255, 255, 0.80); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px);
-            
-            padding: 50px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 30px;
-            padding: 10px 25px;
-            background-color: var(--brand-primary); /* RED Button */
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 5px;
-            transition: background 0.3s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .back-btn:hover {
-            background-color: #b71c1c; 
-        }
-
-        /* --- BIG HEADLINE --- */
-        h1.main-title {
-            color: var(--brand-primary); /* RED Heading */
-            font-size: 3.5rem;
+        /* --- Header --- */
+        header {
+            background: var(--white);
+            padding: 15px 0;
             text-align: center;
-            margin-bottom: 15px;
-            line-height: 1.1;
-            margin-top: 0;
-            text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid var(--brand-secondary); /* Blue border at bottom */
         }
 
-        p.intro-text {
+        .logo {
+            height: 75px;
+            width: auto;
+        }
+
+        /* --- Auto-Scrolling Gallery --- */
+        .gallery-section {
+            background: var(--white);
+            padding: 20px 0;
+            overflow: hidden;
+        }
+
+        .slider {
+            background: white;
+            height: 220px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .slide-track {
+            display: flex;
+            width: calc(300px * 26);
+            animation: scroll 60s linear infinite;
+        }
+
+        .slide {
+            height: 220px;
+            width: 280px;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-300px * 13)); }
+        }
+
+        /* --- Form Section --- */
+        .form-wrapper {
+            max-width: 500px;
+            margin: 40px auto 80px;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            /* Top border is RED (Primary) */
+            border-top: 6px solid var(--brand-primary); 
+        }
+
+        h1 {
             text-align: center;
-            font-size: 1.2rem;
-            color: #000;
-            font-weight: 500;
-            margin-bottom: 50px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* --- Feature Blocks (Why PPSU?) --- */
-        h2.section-title {
-            color: var(--brand-primary); /* Red Title */
-            border-left: 6px solid var(--brand-secondary); /* Blue accent border */
-            padding-left: 15px;
-            margin-bottom: 30px;
-            font-size: 2rem;
+            color: var(--brand-primary); /* Red Heading */
+            margin-bottom: 10px;
+            font-size: 26px;
             font-weight: 700;
         }
 
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            margin-bottom: 60px;
-        }
-
-        .feature-card {
-            background: #ffffff; 
-            padding: 30px;
-            border-radius: 12px;
-            border-top: 5px solid var(--brand-primary); /* Default RED top border */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        p.subtitle {
             text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-top-color: var(--brand-secondary); /* Hover turns border Blue */
-        }
-
-        .feature-card h3 {
-            color: var(--brand-primary);
-            margin-top: 0;
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-        }
-
-        .feature-card p {
-            margin: 0;
-            font-size: 1rem;
             color: #555;
-            line-height: 1.5;
+            margin-bottom: 30px;
+            font-size: 15px;
+            font-weight: 500;
         }
 
-        /* --- Gallery Grid --- */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+        .form-group {
+            margin-bottom: 20px;
         }
 
-        .gallery-grid img {
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--brand-primary); /* Red Labels */
+        }
+
+        input, textarea {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 10px;
-            transition: transform 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            border: 4px solid #fff;
-        }
-        
-        .gallery-grid img:hover {
-            transform: scale(1.02);
-            z-index: 2;
-            border-color: var(--brand-primary); /* Red border on hover */
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: all 0.3s;
+            font-family: inherit;
+            background: #fdfdfd;
         }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 600px) {
-            body {
-                background-attachment: scroll;
-            }
-            .container {
-                margin: 20px;
-                padding: 25px;
-                background: rgba(255, 255, 255, 0.9);
-            }
-            h1.main-title { font-size: 2.2rem; }
-            .gallery-grid { grid-template-columns: 1fr; }
+        input:focus, textarea:focus {
+            border-color: var(--brand-primary); /* Red focus border */
+            box-shadow: 0 0 5px rgba(211, 47, 47, 0.2);
+            outline: none;
         }
+
+        /* Submit Button - RED */
+        button.submit-btn {
+            background-color: var(--brand-primary);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 17px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 10px;
+        }
+
+        button.submit-btn:hover {
+            background-color: #b71c1c; /* Darker Red */
+            transform: translateY(-2px);
+        }
+
+        /* --- Info Button (Bottom Left) - BLUE (Accent) --- */
+        .info-btn {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            width: 55px;
+            height: 55px;
+            background-color: var(--brand-secondary); /* Blue Button */
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: serif;
+            font-weight: bold;
+            font-size: 26px;
+            box-shadow: 0 4px 15px rgba(0, 51, 102, 0.4);
+            text-decoration: none;
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .info-btn:hover {
+            transform: scale(1.1);
+            background-color: #002244;
+        }
+
     </style>
 </head>
 <body>
 
-<div class="container">
-    <a href="index.html" class="back-btn">← Back to Form</a>
-    
-    <h1 class="main-title">About P P Savani University</h1>
-    
-    <p class="intro-text">
-        P P Savani University (PPSU) is a leading educational institution dedicated to academic excellence and holistic student development on a lush, 100-acre campus.
-    </p>
+    <header>
+        <img src="https://i.ibb.co/ymwSrT4Z/PPSUNAACA-Logo.png" alt="PPSU Logo" class="logo">
+    </header>
 
-    <h2 class="section-title">Why PPSU?</h2>
-    <div class="feature-grid">
-        <div class="feature-card">
-            <h3>Accreditation</h3>
-            <p>NAAC 'A' Accredited University.</p>
+    <section class="gallery-section">
+        <div class="slider">
+            <div class="slide-track">
+                <div class="slide"><img src="https://i.ibb.co/20sDdbdh/EK5A0485.jpg" alt="Campus"></div>
+                <div class="slide"><img src="https://i.ibb.co/TB0LTCFR/Group-11-DSC-9011-2-3-DSC-9032-3-4-7-images-equi-patch-2.jpg" alt="Aerial"></div>
+                <div class="slide"><img src="https://i.ibb.co/xtWwLTzT/Group-14-DSC-9796-7-8-DSC-9805-6-7-4-images-patch-1.jpg" alt="Building"></div>
+                <div class="slide"><img src="https://i.ibb.co/8gV5nVJ5/Library-at-PPSU.jpg" alt="Library"></div>
+                <div class="slide"><img src="https://i.ibb.co/cK7SgRnG/2-DPPSU-Aerial-3.jpg" alt="Aerial 2"></div>
+                <div class="slide"><img src="https://i.ibb.co/Wjdh878/AI-Lab-IBM-Collaboration.jpg" alt="AI Lab"></div>
+                <div class="slide"><img src="https://i.ibb.co/RGpmXrFJ/Music-Room-at-PPSU.jpg" alt="Music"></div>
+                <div class="slide"><img src="https://i.ibb.co/7JdGgwhH/Salon-at-PPSU.jpg" alt="Salon"></div>
+                <div class="slide"><img src="https://i.ibb.co/jkB5DQtd/Physiotherapy-at-PPSU-1.jpg" alt="Physio"></div>
+                <div class="slide"><img src="https://i.ibb.co/s97J72zN/v49v9HRT/Solar-Images.jpg" alt="Solar"></div>
+                <div class="slide"><img src="https://i.ibb.co/tTN3nWLG/Group-9-DSC-9994-5-6-Kanchan-Ganga-5-Stop-Window-3-DSC-0007-8-9-4-images-equi-patch-2.jpg" alt="View"></div>
+                <div class="slide"><img src="https://i.ibb.co/5hfRZZzJ/Group-7-DSC-0385-6-7-DSC-0394-5-6-4-images-equi-patch-2.jpg" alt="Garden"></div>
+                <div class="slide"><img src="https://i.ibb.co/fVg7h1Pw/EK5A8514.jpg" alt="Students"></div>
+
+                <div class="slide"><img src="https://i.ibb.co/20sDdbdh/EK5A0485.jpg" alt="Campus"></div>
+                <div class="slide"><img src="https://i.ibb.co/TB0LTCFR/Group-11-DSC-9011-2-3-DSC-9032-3-4-7-images-equi-patch-2.jpg" alt="Aerial"></div>
+                <div class="slide"><img src="https://i.ibb.co/xtWwLTzT/Group-14-DSC-9796-7-8-DSC-9805-6-7-4-images-patch-1.jpg" alt="Building"></div>
+                <div class="slide"><img src="https://i.ibb.co/8gV5nVJ5/Library-at-PPSU.jpg" alt="Library"></div>
+                <div class="slide"><img src="https://i.ibb.co/cK7SgRnG/2-DPPSU-Aerial-3.jpg" alt="Aerial 2"></div>
+                <div class="slide"><img src="https://i.ibb.co/Wjdh878/AI-Lab-IBM-Collaboration.jpg" alt="AI Lab"></div>
+                <div class="slide"><img src="https://i.ibb.co/RGpmXrFJ/Music-Room-at-PPSU.jpg" alt="Music"></div>
+                <div class="slide"><img src="https://i.ibb.co/7JdGgwhH/Salon-at-PPSU.jpg" alt="Salon"></div>
+                <div class="slide"><img src="https://i.ibb.co/jkB5DQtd/Physiotherapy-at-PPSU-1.jpg" alt="Physio"></div>
+                <div class="slide"><img src="https://i.ibb.co/s97J72zN/v49v9HRT/Solar-Images.jpg" alt="Solar"></div>
+                <div class="slide"><img src="https://i.ibb.co/tTN3nWLG/Group-9-DSC-9994-5-6-Kanchan-Ganga-5-Stop-Window-3-DSC-0007-8-9-4-images-equi-patch-2.jpg" alt="View"></div>
+                <div class="slide"><img src="https://i.ibb.co/5hfRZZzJ/Group-7-DSC-0385-6-7-DSC-0394-5-6-4-images-equi-patch-2.jpg" alt="Garden"></div>
+                <div class="slide"><img src="https://i.ibb.co/fVg7h1Pw/EK5A8514.jpg" alt="Students"></div>
+            </div>
         </div>
-        <div class="feature-card">
-            <h3>Legacy</h3>
-            <p>A strong legacy in education with a focus on quality and innovation.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Global Exposure</h3>
-            <p>Collaborations with international universities and industries.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Infrastructure</h3>
-            <p>Modern labs, smart classrooms, hostels, and sports facilities.</p>
-        </div>
+    </section>
+
+    <div class="form-wrapper">
+        <h1>PPSU Campus Visit Registration</h1>
+        <p class="subtitle">For Consultants & Associates</p>
+
+        <form action="https://formspree.io/f/mqebollp" method="POST">
+            
+            <div class="form-group">
+                <label>Name *</label>
+                <input type="text" name="name" required placeholder="Full Name">
+            </div>
+
+            <div class="form-group">
+                <label>Consultancy Name *</label>
+                <input type="text" name="consultancy_name" required placeholder="e.g. EduGlobal Services">
+            </div>
+
+            <div class="form-group">
+                <label>City *</label>
+                <input type="text" name="city" required placeholder="e.g. Hyderabad">
+            </div>
+
+            <div class="form-group">
+                <label>Office Address *</label>
+                <textarea name="office_address" rows="3" required placeholder="Full Street Address"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Mobile No *</label>
+                <input type="tel" name="mobile" required placeholder="+91">
+            </div>
+
+            <button type="submit" class="submit-btn">Register for Visit</button>
+        </form>
     </div>
 
-    <h2 class="section-title">PPSU Gallery</h2>
-    <div class="gallery-grid">
-        <img src="https://i.ibb.co/Wjdh878/AI-Lab-IBM-Collaboration.jpg" alt="Labs">
-        <img src="https://i.ibb.co/8gV5nVJ5/Library-at-PPSU.jpg" alt="Library">
-        <img src="https://i.ibb.co/7JdGgwhH/Salon-at-PPSU.jpg" alt="Facilities">
-        <img src="https://i.ibb.co/fVg7h1Pw/EK5A8514.jpg" alt="Students">
-        <img src="https://i.ibb.co/RGpmXrFJ/Music-Room-at-PPSU.jpg" alt="Music Room">
-        <img src="https://i.ibb.co/jkB5DQtd/Physiotherapy-at-PPSU-1.jpg" alt="Physiotherapy">
-    </div>
-</div>
+    <a href="about.html" class="info-btn">i</a>
 
 </body>
 </html>
